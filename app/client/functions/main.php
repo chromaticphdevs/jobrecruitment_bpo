@@ -72,6 +72,20 @@
 		$db = DB::getInstance();
 
 
+		$post = $_POST;
+
+		$skillError = "You must have atleast 3 skills";
+
+		if( !isset($post['skills']) ){
+			Flash::set($skillError , 'danger');
+			return false;
+		}
+
+		if( count($post['skills']) < 3) {
+			Flash::set($skillError , 'danger');
+			return false;
+		}
+
 		$skills = $_POST['skills'];
 		$userId = _post('user_id');
 
@@ -111,7 +125,7 @@
 
 
 
-	function __store_work_experience()
+	function __save_work_experience()
 	{
 		$db = DB::getInstance();
 

@@ -19,6 +19,7 @@
 	$jobFields = getJobFields();
 ?>
 <?php build('content') ?>
+	
 <?php endbuild()?>
 
 <?php loadTo('orbit/app')?>

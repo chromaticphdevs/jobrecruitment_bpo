@@ -199,10 +199,13 @@
 
     function FormSubmit($name , $value = null , $attributes = null)
     {
-        if(is_null($attributes))
-        {
+        if(is_null($attributes)){
             $attributes = [];
             $attributes['class'] = 'btn btn-primary';
+        }else{
+
+            if( !isset($attributes['class']) ) 
+                $attributes['class'] = 'btn btn-primary';
         }
 
         $attributes = is_null($attributes) ? $attributes : keypair_to_str($attributes);

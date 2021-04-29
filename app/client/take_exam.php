@@ -66,7 +66,8 @@
 						</div>
 
 						<div class="logo">
-							<img src="<?php echo URL.DS.'public/logo.jpg'?>">
+							<img src="<?php echo URL.DS.'public/new_logo.jpg'?>" 
+							style="width: 40px; height: 40px;">
 						</div>
 					</div>
 					<div class="examPanel container">

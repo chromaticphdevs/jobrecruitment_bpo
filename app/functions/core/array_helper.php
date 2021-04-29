@@ -177,16 +177,35 @@
 
 	if( !function_exists('keypair_to_str'))
 	{
-		function keypair_to_str($arr)
+		/*
+		*@param
+		*seperator , will be seperating the key value pair
+		*rowseperator , will be sperating array rows
+		*valuewrapper wraps the value 
+		*/
+		function keypair_to_str($arr , $separator = null , $rowSeparator = null , $valueWrapper = null)
 		{
 			$strArr = '';
 
-			foreach($arr as $key => $value){
-				$strArr .= " {$key} = '$value'";
+
+			if( is_null($valueWrapper))
+				$valueWrapper = "'";
+
+			if( is_null($separator))
+				$separator = '=';
+
+			$arrCount = count($arr);
+
+			foreach($arr as $key => $value)
+			{
+				$strArr .= " {$key} {$separator} {$valueWrapper}{$value}{$valueWrapper}";
+					if(!is_null($rowSeparator))
+						$strArr .= "$rowSeparator";
 			}
-			
 			return $strArr;
 		}
+		
 	}else{
 		die('FNC::keypair_to_str');
 	}
+

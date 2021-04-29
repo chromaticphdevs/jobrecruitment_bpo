@@ -8,37 +8,24 @@
 ?>
 
 <?php build('content') ?>
-
-	<div class="col-md-12 mx-auto">
-		<div class="card">
-			<div class="card-header">
-				<h4><?php echo $job['title'] . ' - ' .$job['sub_title']?></h4>
-				<?php Flash::show();?>
-			</div>
-			<div class="card-body">
-				<?php if(!Session::check('user')) : ?>
-					<div class="alert alert-danger">
-						<h5>You must have an account to apply</h5>
+	
+	<?php $user = auth()?>
+	<div id="wrapper" class="container-fluid">
+		<div style="margin-top: 50px;"></div>
+		<div class="row">
+			<div class="col-md-5">
+				<div class="card card-theme-dark">
+					<div class="card-header">
+						<h4 class="card-title">Job Details</h4>
 					</div>
-				<?php endif;?>
 
+					<div class="card-body">
+						<?php if(!$user) : ?>
+							<div class="alert alert-danger">
+								<h5>You must have an account to apply</h5>
+							</div>
+						<?php endif;?>
 
-				<?php if(Session::check('user')) :?>
-				<?php 	
-					$hasApplied = false;
-					if(isset($_SESSION['auth'] , $_SESSION['user']))
-						$hasApplied = hasApplied($_SESSION['user']['id'], $job['id']);
-				?>
-
-				<?php if($hasApplied): ?>
-					<div class="alert alert-danger ">
-						<p>You already applied for this job.</p>
-					</div>
-				<?php endif?>
-
-
-				<div class="row">
-					<section id="job_information" class="col-md-5">
 						<h3><?php echo $job['position']?> - <?php echo $job['title']?></h3>
 						<div class="job-desc">
 							<div>
@@ -63,40 +50,73 @@
 								</dl>
 							</div>
 						</div>
-					</section>
-					<section id="job_application" class="col-md-5">
-						<?php $userinfo = getUser(Session::get('user')['id']);?>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-7">
+				<div class="card card-theme-dark">
+					<div class="card-header">
+						<h4 class="card-title">Application Form</h4>
+					</div>
+					<?php Flash::show()?>
+					<div class="card-body">
+						<?php 
+							$hasApplied = false;
+							if(isEqual($user['type'] , 'applicant'))
+								$hasApplied = hasApplied($user['id'] , $job['id']);
+						?>
+
+						<?php if($hasApplied): ?>
+							<div class="alert alert-danger ">
+								<p>You already applied for this job.</p>
+							</div>
+						<?php endif?>
+
+						<?php $userinfo = getUser($user['id']);?>
 						<div id="personalinfo">
 							<p><strong><?php echo $userinfo['fullname']?></strong> <br>
 							Email : <?php echo $userinfo['email']?> | Phone : <?php echo $userinfo['phone']?></p>
 						</div>
 						<form method="post" enctype="multipart/form-data">
+							<?php 
+								FormSave();
+								FormHidden('jobid' , $job['id']);
+							?>
 							<input type="hidden" name="jobid" value="<?php echo $job['id']?>">
 							<div class="form-group">
-								<label>Make your pitch <sup>*</sup> </label>
-								<small>Minimum of 50 characters</small>
-								<?php FormTextarea('applicant_pitch' , '' , [
-									'class' => 'form-control',
-									'rows'  => 10
-								])?>
+								<?php
+									FormLabel('Make your pitch *');
+										FormTextarea('applicant_pitch' , '' , [
+										'class' => 'form-control',
+										'rows'  => 5,
+										'required' => '',
+										'placeholder' => 'Tell us why you are the best candidate for the position..'
+									]);
+								?>
+								<small></small>
 							</div>
 
 							<div class="form-group">
-								<label>Image Type Resume</label>
-								<input type="file" name="resume_image">
+								<?php
+									FormLabel('Image type Resume');
+									FormFile('resume_image' , ['class' => 'form-control']);
+								?>
 								<small>Jpeg , PNG only</small>
 							</div>
 
 							<div class="form-group">
-								<label>Text type Resume</label>
-								<input type="file" name="resume_text">
+								<?php
+									FormLabel('Text Type Resume * ');
+									FormFile('resume_text' , ['class' => 'form-control' , 'required' => '']);
+								?>
 								<small>Word / PDF</small>
 							</div>
+
 							<input type="submit" name="sendApplication" class="btn btn-primary" value="Send Application">
 						</form>
-					</section>
+					</div>
 				</div>
-				<?php endif;?>
 			</div>
 		</div>
 	</div>

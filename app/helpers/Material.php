@@ -35,7 +35,7 @@ class Material
         $params = [
             'buildinstance' => self::$buildInstance,
             'variables' => self::$variables,
-            'builds'    => self::$builds['scripts']
+            'builds'    => self::$builds['scripts'] ?? ''
         ];
 
 

@@ -18,6 +18,7 @@
 	//load all functions
 
 	require_once APPROOT.DS.'functions'.DS.'debug_helper.php';
+	require_once APPROOT.DS.'functions'.DS.'widgets.php';
 	require_once APPROOT.DS.'functions'.DS.'html_helper.php';
 	require_once APPROOT.DS.'functions'.DS.'number_helper.php';
 	require_once APPROOT.DS.'functions'.DS.'random_helper.php';

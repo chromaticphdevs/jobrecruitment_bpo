@@ -20,5 +20,7 @@ const MAILER_AUTH = [
 
 define('SCHEDULE_APPOINTMENT' , 'APPOINTMENT SCHEDULE');
 
+
 require_once 'env.php';
+require_once 'constants.php';
 

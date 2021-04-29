@@ -6,7 +6,7 @@
 
 	do_action('__store_skills' , '_save_skills');
 	do_action('__store_education' , '_save_education');
-	do_action('__store_work_experience' , '_save_work_experience');
+	do_action('__save_work_experience' , '_save_work_experience');
 	
 	$contactIsSaved = do_action('__save_contact' , '_save_contact');
 
@@ -45,12 +45,13 @@
 				<?php if(empty($userSkills)) :?>
 					<form method="post">
 						<?php FormHidden('user_id' , auth()['id'])?>
-						<div class="card" style="<?php echo $hidden == false ? 'display: block' : 'display: none'?>">
+
+						<div class="card card-theme-dark" style="<?php echo $hidden == false ? 'display: block' : 'display: none'?>">
 							<div class="card-header">
 								<div class="row">
 									<div class="col-md-6">
-										<h4>Skills</h4>
-										<p>Select atleast 3 skills</p>
+										<h4 class="card-title">Skills</h4>
+										<p>Select atleast 3 skills , click to select.</p>
 									</div>
 
 									<div class="col-md-6 text-right">
@@ -86,12 +87,16 @@
 
 				<!-- EDUCATION -->
 				<?php if(is_null($userEducation)) :?>
-				<div class="card" style="<?php echo $hidden == false ? 'display: block' : 'display: none'?>">
+				<div class="card card-theme-dark" style="<?php echo $hidden == false ? 'display: block' : 'display: none'?>">
 					<div class="card-header">
-						<h4>Education</h4>
+						<div class="row">
+							<div class="col-md-6"><h4 class="card-title">Education</h4></div>
+							<div class="col-md-6 text-right"><?php FormSubmit('_save_education' , 'Save' , ['form' => 'education_form']);?></div>
+						</div>
+
 					</div>
 					<div class="card-body">
-						<?php FormOpen()?>
+						<?php FormOpen( ['id' => 'education_form'])?>
 							<?php FormHidden('user_id' , auth()['id'])?>
 							<div class="form-group">
 								<?php
@@ -120,11 +125,6 @@
 									FormTextarea('school' , '' , ['class' => 'form-control']);
 								?>
 							</div>
-							<div class="form-group">
-								<?php
-									FormSubmit('_save_education' , 'Save');
-								?>
-							</div>
 						<?php FormClose()?>
 					</div>
 				</div>
@@ -133,16 +133,25 @@
 
 				<!-- WORK EXPERIENCE -->
 				<?php if(is_null($userWorkExperience)) :?>
-					<div class="card" style="<?php echo $hidden == false ? 'display: block' : 'display: none'?>">
+					<div class="card card-theme-dark" style="<?php echo $hidden == false ? 'display: block' : 'display: none'?>">
 						<?php
 							$workFields = arr_layout_keypair(getJobFields() , ['field' , 'field']);
 						?>
 						<div class="card-header">
-							<h4>Work Experience</h4>
-							<p>Your latest work experience. <a href="#">I have no work-experience</a></p>
+							<div class="row">
+								<div class="col-md-6">
+									<h4 class="card-title">Work Experience</h4>
+									<p>Your latest work experience. <a href="#">I have no work-experience</a></p>
+								</div>
+								<div class="col-md-6 text-right">
+									<?php
+										FormSubmit('_save_work_experience' , 'Save Work Experience' , ['form' => 'work_experience_form']);
+									?>
+								</div>
+							</div>
 						</div>
 						<div class="card-body">
-							<?php FormOpen()?>
+							<?php FormOpen(['id' => 'work_experience_form'])?>
 								<?php
 									FormHidden('user_id' , auth()['id']);
 								?>
@@ -182,11 +191,6 @@
 										</div>
 									</div>
 								</div>
-								<div class="form-group">
-									<?php
-										FormSubmit('_save_work_experience' , '_save_contact');
-									?>
-								</div>
 							<?php FormClose()?>
 						</div>
 					</div>
@@ -194,12 +198,22 @@
 				<?php endif?>
 
 				<!-- CONTACT -->
-				<div class="card" style="<?php echo $hidden == false ? 'display: block' : 'display: none'?>">
+				<div class="card card-theme-dark" style="<?php echo $hidden == false ? 'display: block' : 'display: none'?>">
 					<div class="card-header">
-						<h4>Contact Details</h4>
+						<div class="row">
+							<div class="col-md-6">
+								<h4 class="card-title">Contact Details</h4>
+							</div>
+							<div class="col-md-6 text-right">
+								<div class="form-group">
+									<?php FormSubmit('_save_contact' , 'Save' , ['form' => 'contact_form']); ?>
+								</div>
+							</div>
+						</div>
+						
 					</div>
 					<div class="card-body">
-						<?php FormOpen()?>
+						<?php FormOpen(['id' => 'contact_form'])?>
 						<?php FormHidden('user_id' , auth()['id'])?>
 						<div class="form-group">
 							<?php
@@ -213,17 +227,6 @@
 								FormLabel('Address');
 								FormTextarea('address' , '' , ['class' => 'form-control']);
 							?>
-						</div>
-
-						<div class="form-group">
-							<?php
-								FormSubmit('_save_contact' , 'Save');
-							?>
-							<?php
-								$auth = auth();
-								$token = sealInput($auth['username'].''.$auth['id']);
-							?>
-							<a href="account_setup_finished.php?token=<?php echo $token?>">Skip and finish</a>
 						</div>
 						<?php FormClose()?>	
 					</div>

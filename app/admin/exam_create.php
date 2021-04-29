@@ -1,50 +1,44 @@
 <?php require_once '../dependencies.php';?>
 
-<?php require_once APPROOT.DS.'templates/user/header.php';?>
-<style type="text/css">
-	.space-up{
-		margin: 5px;
-	}
-</style>
-</head>
-<body>
 <?php
 	if(postRequest('createExam'))
 	{
 		examCreate($_POST);
 	}
 ?>
-<?php require_once APPROOT.DS.'templates/user/navigation.php';?>
-<?php require_once APPROOT.DS.'templates/user/sidebar.php';?>
-	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-		<?php pageHeader('Exam Management') ;?>
-		<div class="panel panel-default">
+
+<?php build('content') ?>
+	<?php spaceUp()?>
+	<div class="card card-theme-dark">
+		<div class="card-header">
+			<h4 class="card-title">Create Exam</h4>
 			<?php Flash::show();?>
-			<div class="panel-heading"> Exam Info </div>
-			<div class="panel-body">
-				<div class="col-md-5">
-					<form method="post">
-						<div class="form-group">
-							<label>Name</label>
-							<input type="text" name="name" class="form-control">	
-						</div>
+		</div>
 
-						<div class="form-group">
-							<label>Description</label>
-							<input type="text" name="desc" class="form-control">	
-						</div>
+		<div class="card-body">
+			<div class="col-md-5">
+				<form method="post">
+					<div class="form-group">
+						<label>Name</label>
+						<input type="text" name="name" class="form-control">	
+					</div>
 
-						<div class="form-group">
-							<label>Duration</label>
-							<input type="text" name="duration" class="form-control" placeholder="eg. 3:30">	
-							<small>Always use the hour:min syntax</small>
-						</div>
+					<div class="form-group">
+						<label>Description</label>
+						<input type="text" name="desc" class="form-control">	
+					</div>
 
-						<input type="submit" name="createExam" class="btn btn-primary" value="Create Exam">
-					</form>
-				</div>
+					<div class="form-group">
+						<label>Duration</label>
+						<input type="text" name="duration" class="form-control" placeholder="eg. 3:30">	
+						<small>Always use the hour:min syntax</small>
+					</div>
+
+					<input type="submit" name="createExam" class="btn btn-primary" value="Create Exam">
+				</form>
 			</div>
 		</div>
 	</div>
-<?php require_once APPROOT.DS.'templates/user/scripts.php';?>
-<?php require_once APPROOT.DS.'templates/user/footer.php';?>
+<?php endbuild()?>
+
+<?php loadTo('orbit/app-admin')?>

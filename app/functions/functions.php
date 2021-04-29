@@ -928,7 +928,7 @@
 			$message = mailTemplate("Thank you for your registration , <br/> 
 				Click the link below to verify your account and start getting your dream job!<br/>
 				<a href='{$link}'> {$link} </a>" , $fullname);
-
+				
 			$emailSent = _mail($email , 'Thank you for Joining us' , $message);
 
 			return true;

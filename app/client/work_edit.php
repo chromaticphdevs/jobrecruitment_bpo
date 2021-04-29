@@ -22,9 +22,9 @@
 <div id="wrapper">
   <div style="margin-top: 50px;"></div>
   <div class="col-md-5">
-    <div class="card">
+    <div class="card card-theme-dark">
       <div class="card-header">
-        <h4>Update Work Information</h4>
+        <h4 class="card-title">Update Work Information</h4>
         <?php Flash::show()?>
       </div>
       <div class="card-body">

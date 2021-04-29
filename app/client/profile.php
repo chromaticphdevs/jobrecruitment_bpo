@@ -34,16 +34,19 @@
 
 <div id="wrapper">
 	<div style="margin-top: 50px;"></div>
+	<?php Flash::show()?>
 	<div class="row">
 		<div class="col-md-3">
-			<section class="card personal">
+
+			<div class="card card-theme-dark">
 				<div class="card-header">
-					<h3>Personal</h3>
+					<h4 class="card-title">Personal</h4>
 				</div>
+
 				<div class="card-body">
 					<section>
-						<div>
-							<img src="<?php echo URL.DS.'public/assets/'.$personal['profile']?>" style="width: 150px; display: block;margin: 0px auto;">
+						<div class="text-center">
+							<?php wCircularImage(['name' => $personal['profile'] ,'path' => URL.DS.'public/assets'])?>
 						</div>
 						<form method="post" enctype="multipart/form-data">
 							<div class="form-group">
@@ -85,13 +88,15 @@
 						<h4>User Files</h4>
 					</section>
 				</div>
-			</section>			
+			</div>		
 		</div>
 
 		<div class="col-md-9" id="right-content">
-			<div class="card">
+			<div class="card card-theme-dark">
+				<div class="card-header">
+					<h4 class="card-title">Skills</h4>
+				</div>
 				<section class="card-body">
-					<h4>Skills</h4>
 					<div class="row">
 						<?php foreach($skills as $skill):?>
 		                    <div class="col-md-6 col-lg-6 col-xl-3">
@@ -107,38 +112,44 @@
 				</section>
 			</div>
 
-			<div class="card">
+			<div class="card card-theme-dark">
+				<div class="card-header">
+					<h4 class="card-title">Work Experience</h4>
+				</div>
 				<section class="card-body">
 					<section>
-						<h4>Work Experience</h4>
+						
 						<div> <small>External</small> <a href="work_create.php">Add More</a></div>
 						<?php
 							$workExperiences = getWorkExperiences(Session::get('user')['id']);
 						?>
 
 						<?php if(!empty($workExperiences)) :?>
-						<table class="table">
-							<thead>
-								<th>Field</th>
-								<th>Position</th>
-								<th>Role Description</th>
-								<th>Date</th>
-								<th>Year</th>
-							</thead>
-							<tbody>
-								<?php foreach($workExperiences as $work) :?>
-									<tr>
-										<td>
-											<a href="work_edit.php?workid=<?php echo $work['id']?>"><?php echo $work['field']?></a>
-										</td>
-										<td><?php echo $work['position']?></td>
-										<td><?php echo $work['role_description']?></td>
-										<td><?php echo $work['date']?></td>
-										<td><?php echo $work['year']?></td>
-									</tr>
-								<?php endforeach;?>
-							</tbody>
-						</table>
+							<div class="table-responsive">
+								<table class="table table-bordered">
+									<thead>
+										<th>Field</th>
+										<th>Position</th>
+										<th>Role Description</th>
+										<th>Date</th>
+										<th>Year</th>
+									</thead>
+									<tbody>
+										<?php foreach($workExperiences as $work) :?>
+											<?php if(empty($work['field'])) continue;?>
+											<tr>
+												<td>
+													<a href="work_edit.php?workid=<?php echo $work['id']?>"><?php echo $work['field']?></a>
+												</td>
+												<td><?php echo $work['position']?></td>
+												<td><?php echo $work['role_description']?></td>
+												<td><?php echo $work['date']?></td>
+												<td><?php echo $work['year']?></td>
+											</tr>
+										<?php endforeach;?>
+									</tbody>
+								</table>
+							</div>
 						<?php else:?>
 							<p>No Job Experience, <a href="work_create.php">Add here</a></p>
 						<?php endif;?>
@@ -185,7 +196,6 @@
 						$applicant_other_educations = getApplicantEducations(Session::get('user')['id']);
 					?>
 					<h4>Other Educations</h4>
-					<div> <small>External</small> <a href="education_create.php">Add More</a></div>
 					<?php if(!empty($applicant_other_educations)) :?>
 					<table class="table">
 						<thead>

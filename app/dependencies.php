@@ -1,5 +1,6 @@
 <?php
 	require_once('config/conf.php');
+	require_once('config/conf.php');
 	require_once 'autoloader.php';
 
 

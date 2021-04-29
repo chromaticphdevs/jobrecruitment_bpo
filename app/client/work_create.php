@@ -31,51 +31,46 @@
   <div style="margin-top: 50px;"></div>
 
   <div class="col-md-5">
-    <div class="card">
+    <div class="card card-theme-dark">
       <div class="card-header">
-        <h4>Works</h4>
+        <h4 class="card-title">Works</h4>
+        Add Work Experience
       </div>
 
       <div class="card-body">
         <form method="post">
-              <legend>Add Work Experience</legend>
-              <div class="form-group">
-                <label>Field</label>
-                <?php FormSelect('work_field' , jobFields() , '' , [
-                  'class' => 'form-control'
-                ])?>
+          <div class="form-group">
+            <label>Field</label>
+            <?php 
+              FormSelect('work_field' , jobFields() , '' , [
+                'class' => 'form-control',
+                'required' => ''
+              ]);
+            ?>
+          </div>
+          <div class="form-group">
+            <label>Position</label>
+            <?php FormText('position' , '' , ['class' => 'form-control'])?>
+          </div>
+          <div class="form-group">
+            <label>Role Description</label>
+            <?php FormTextarea('role_description' , '' , ['class' => 'form-control' , 'rows' => 5])?>
+          </div>
+          <div class="form-group">
+            <label>When</label>
+            <div class="row">
+              <div class="col-md-5">
+                <label>Date</label>
+                <?php FormSelect('work_date' , getDates('short') , '' , ['class' => 'form-control'])?>
               </div>
-              <div class="form-group">
-                <label>Position</label>
-                <input type="text" name="position" class="form-control">
+              <div class="col-md-5">
+                <label>Year</label>
+                <?php FormSelect('work_year' , generateYear() , '' , ['class' => 'form-control'])?>
               </div>
-              <div class="form-group">
-                <label>Role Description</label>
-                <textarea class="form-control" rows="10" name="role_description"></textarea>
-              </div>
-              <div class="form-group">
-                <label>When</label>
-                <div class="row">
-                  <div class="col-md-5">
-                    <label>Date</label>
-                    <select class="form-control" name="work_date">
-                      <?php foreach(getDates('short') as $date):?>
-                        <option value="<?php echo $date;?>"><?php echo $date;?></option>
-                      <?php endforeach;?>
-                    </select>
-                  </div>
-                  <div class="col-md-5">
-                    <label>Year</label>
-                    <select class="form-control" name="work_year">
-                      <?php foreach(generateYear() as $year) :?>
-                        <option value="<?php echo $year;?>"><?php echo $year;?></option>
-                      <?php endforeach;?>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <input type="submit" name="createWorkExperience" value="Save Work" class="btn btn-primary">
-          </form>
+            </div>
+          </div>
+          <input type="submit" name="createWorkExperience" value="Save Work" class="btn btn-primary">
+      </form>
       </div>
     </div>
   </div>

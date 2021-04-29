@@ -14,6 +14,7 @@
     <link href="<?php echo _vendor('orbit/css/icons.css')?>" rel="stylesheet" type="text/css">
     <link href="<?php echo _vendor('orbit/css/flag-icon.min.css')?>" rel="stylesheet" type="text/css">
     <link href="<?php echo _vendor('orbit/css/style.css')?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo _public('css/global_custom.css')?>" rel="stylesheet" type="text/css">
 
     <?php produce('headers')?>
     <!-- End css -->

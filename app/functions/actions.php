@@ -23,6 +23,15 @@
 			return FALSE;
 		}
 	}
+
+
+	function getRequest($actionName)
+	{
+		if( isset($_GET['action']) && isEqual($_GET['action'] ,$actionName ) )
+			return true;
+		return false;
+	}
+	
 	########ADMINISTRATOR#########
 	function updateCategory($category)
 	{
@@ -453,10 +462,23 @@
 
 		$job = getJob($jobid);
 
+		$pitchWordCount = str_word_count( $applicant_pitch );
+		
+		if($pitchWordCount < 10 )
+		{
+			Flash::set("Applicant Pitch no lesser than 10 words" , 'warning');
+			return;
+		}else if($pitchWordCount > 500)
+		{
+			Flash::set("Applicant Pitch no greater than 500 words" , 'warning');
+			return;
+		}
+
 		if(hasApplied($userid , $jobid)){
 			Flash::set('You have already applied for the job' , 'danger');
 			return;
 		}
+
 		if(isPreviousEmployer($job['companyid'] , $jobid))
 		{
 			Flash::set("You have already been an employee of the employer" , "danger");
@@ -469,16 +491,7 @@
 			return;
 		}
 
-
-		if(strlen($applicant_pitch) < 50 )
-		{
-			Flash::set("Applicant Pitch no lesser than 150 characters" , 'warning');
-			return;
-		}else if(strlen($applicant_pitch) > 250)
-		{
-			Flash::set("Applicant Pitch no greater than 250 characters" , 'warning');
-			return;
-		}
+		
 		
 		
 		$attachmentName = '';
@@ -838,7 +851,26 @@
 	function createWorkExperience($workExperience)
 	{
 		extract($workExperience);
+		
 		$db = DB::getInstance();
+
+		$hasError = false;
+		
+		foreach($workExperience as $key => $row)
+		{
+			if($row['createWorkExperience'])
+				continue;
+
+			if( empty($row) ){
+				$hasError = true;
+				break;
+			}
+		}	
+
+		if($hasError){
+			Flash::set("All fields are required" , 'warning');
+			return false;
+		}
 
 		$userid = Session::get('user')['id'];
 
@@ -2619,6 +2651,11 @@
 	{
 		$db = DB::getInstance();
 
+		if( empty($workInfo['field']) || empty($workInfo['position']) || empty($workInfo['role_description']))
+		{
+			Flash::set("All fields are required");
+			return false;
+		}
 		return db_update('work_experiences' , [
 			'field' => $workInfo['field'],
 			'position' => $workInfo['position'],

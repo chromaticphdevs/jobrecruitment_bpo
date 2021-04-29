@@ -1,29 +1,15 @@
 <?php require_once '../dependencies.php';?>
+<?php $examList = getExamList(); ?>
+<?php build('content')?>
+	<?php spaceUp()?>
+	<div class="card card-theme-dark">
+		<div class="card-header">
+			<h4 class="card-title">Exam List</h4>
+		</div>
 
-<?php require_once APPROOT.DS.'templates/user/header.php';?>
-<style type="text/css">
-	.space-up{
-		margin: 5px;
-	}
-</style>
-</head>
-<body>
-	<?php 
-		if(postRequest('qandcreate'))
-		{
-			examQCACreate($_POST);
-		}
-	?>
-<?php require_once APPROOT.DS.'templates/user/navigation.php';?>
-<?php require_once APPROOT.DS.'templates/user/sidebar.php';?>
-	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-		<?php pageHeader('Exam Management') ;?>
-		<div class="panel panel-default">
-			<?php Flash::show();?>
-			<?php $examList = getExamList();?>
-			<div class="panel-heading"> Exam List </div>
-			<div class="panel-body">
-				<table class="table <?php echo count($examList) > 10 ? 'myTable' : ''?>">
+		<div class="card-body">
+			<div class="table-responsive">
+				<table class="table myTable table-bordered">
 					<thead>
 						<th>Name</th>
 						<th>Description</th>
@@ -39,7 +25,6 @@
 								<td><?php echo $exam['duration']?></td>
 								<td><?php echo $exam['questiontotal']?></td>
 								<td>
-									<a href="exam_edit.php?id=<?php echo $exam['id']?>">Edit</a>
 									<a href="exam_show.php?id=<?php echo $exam['id']?>">Show</a>
 								</td>
 							</tr>
@@ -49,10 +34,5 @@
 			</div>
 		</div>
 	</div>
-<?php require_once APPROOT.DS.'templates/user/scripts.php';?>
-<script defer>
-	$(document).ready( function () {
-	    $('.myTable').DataTable();
-	} );
-</script>
-<?php require_once APPROOT.DS.'templates/user/footer.php';?>
+<?php endbuild()?>
+<?php loadTo('orbit/app-admin')?>

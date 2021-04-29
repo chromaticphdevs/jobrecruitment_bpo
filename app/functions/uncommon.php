@@ -270,6 +270,11 @@
         return URL.DS.'public/vendor'.DS.$path;
     }
 
+     function _public($path)
+    {
+        return URL.DS.'public'.DS.$path;
+    }
+
     function convertDotToDS($path)
     {
         return str_replace('.' , DS , $path);

@@ -33,9 +33,10 @@
 
 <?php build('content') ?>
 <div style="margin-top: 50px;"></div>
-<div class="card col-md-5">
+<div class="card card-theme-dark col-md-5">
+  <?php Flash::show()?>
   <div class="card-header">
-    <h4>Educations</h4>
+    <h4 class="card-title">Educations</h4>
   </div>
 
   <div class="card-body">
