@@ -25,13 +25,23 @@
 
 			define('DBHOST' , 'localhost');
 
-			define('DBUSER' , 'monshhic_app');
+			define('DBUSER' , 'recrtrwa_main');
 
-			define('DBPASS' , 'Z_t,iS$DLk@F');
+			define('DBPASS' , 'P=jDk2in{6${');
 
-			define('DBNAME' , 'monshhic_jobrecruitment');
+			define('DBNAME' , 'recrtrwa_main');
 
-			define('URL' , 'https://app.monsterthesis.com');
+			define('URL' , 'https://recruitment.host');
+			
+			// define('DBHOST' , 'localhost');
+
+			// define('DBUSER' , 'monshhic_app');
+
+			// define('DBPASS' , 'Z_t,iS$DLk@F');
+
+			// define('DBNAME' , 'monshhic_jobrecruitment');
+
+			// define('URL' , 'https://app.monsterthesis.com');
 
 			// error_reporting(0);
 		break;
