@@ -119,7 +119,7 @@
 				<section class="card-body">
 					<section>
 						
-						<div> <small>External</small> <a href="work_create.php">Add More</a></div>
+						<!-- <div> <small>External</small> <a href="work_create.php">Add More</a></div> -->
 						<?php
 							$workExperiences = getWorkExperiences(Session::get('user')['id']);
 						?>
@@ -151,7 +151,7 @@
 								</table>
 							</div>
 						<?php else:?>
-							<p>No Job Experience, <a href="work_create.php">Add here</a></p>
+							<!-- <p>No Job Experience, <a href="work_create.php">Add here</a></p> -->
 						<?php endif;?>
 					</section>
 
@@ -228,7 +228,7 @@
 						</tbody>
 					</table>
 					<?php else:?>
-						<p>No Other education <a href="education_create.php">Add Education</a> </p>
+						<!-- <p>No Other education <a href="education_create.php">Add Education</a> </p> -->
 					<?php endif;?>
 				</section>
 			</div>
@@ -263,7 +263,7 @@
 						</table>
 
 					<?php else:?>
-						<p>No Pending Job application found. <a href="catalog.php">Search now on the job catalogs.</a></p>
+						<!-- <p>No Pending Job application found. <a href="catalog.php">Search now on the job catalogs.</a></p> -->
 					<?php endif?>
 				</section>
 			</div>

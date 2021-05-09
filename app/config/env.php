@@ -12,8 +12,8 @@
 			define('DBHOST' , 'localhost');
 			define('DBUSER' , 'root');
 			define('DBPASS' , '');
-			define('DBNAME' , 'careersm_main');
-			define('URL' , 'http://localhost/metrojobs');
+			define('DBNAME' , 'job_recruitment');
+			define('URL' , 'http://localhost/jobrecruitment_bpo');
 		break;
 
 		case 'live':
