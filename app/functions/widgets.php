@@ -8,7 +8,7 @@
 	}
 	function wSystemBanner()
 	{
-		$image = URL.DS.'public/monster_thesis_banner.jpg';
+		$image = URL.DS.'public/banner.jpg';
 		
 		print <<<EOF
 			<div style='margin-top:30px'>
