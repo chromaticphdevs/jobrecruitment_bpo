@@ -168,16 +168,12 @@
         <body>
             <div id="wrapper" style="width: 700px;margin: 0px auto;font-family: 'Poppins', sans-serif;font-weight: regular;color: #000;border: 1px solid #000;padding: 10px;">
                 <div id="company_banner" style="height: 200px;background: #eee;">
-                    <img src="{$url}/monster_thesis_banner.jpg" style="width: 100%;height: 100%;">
+                    <img src="{$url}/banner.jpg" style="width: 100%;height: 100%;">
                 </div>
                 <div id="content" style="padding: 10px 30px;">
                     {$reciever}
                     {$message}
                     <div id="footer" style="text-align: center;margin-top: 50px;color: #060930;font-size: .60em;font-weight: bold;">
-                        <p>
-                            <img src="{$url}/new_logo.jpg" style="display: block; margin: 0px auto; height: 40px; width: 40px;">
-                            Follow us on facebook. <br> <a href="https://www.facebook.com/MonsterThesis">https://www.facebook.com/MonsterThesis</a>
-                        </p>
                         <p>
                             Copy Right @<?php echo APP_NAME?> All rights reserved.
                         </p>

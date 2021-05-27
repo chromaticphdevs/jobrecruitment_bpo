@@ -17,7 +17,7 @@
 
 		<div class="card-body">
 			<div class="table-responsive">
-				<table class="table" id="datatable">
+				<table class="table dataTable">
 					<thead>
 						<th>Title</th>
 						<th>Status</th>
@@ -55,18 +55,6 @@
 		</div>
 	</div>	
 <?php endbuild()?>
-
-<?php 
-	build('scripts');
-		dtFoot();
-	endbuild();
-?>
-
-<?php 
-	build('headers');
-		dtHead();
-	endbuild();
-?>
 
 
 <?php

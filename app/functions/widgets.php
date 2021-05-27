@@ -8,7 +8,7 @@
 	}
 	function wSystemBanner()
 	{
-		$image = URL.DS.'public/monster_thesis_banner.jpg';
+		$image = URL.DS.'public/banner.jpg';
 		
 		print <<<EOF
 			<div style='margin-top:30px'>
@@ -46,7 +46,6 @@
 
 		$class = 'mr-3 rounded-circle';
 
-
 		if( empty($srcParam) ){
 			$src = DEFAULT_PROFILE_IMAGE_PATH.DS.'/'.DEFAULT_PROFILE_IMAGE_NAME;
 		}else{
@@ -64,7 +63,7 @@
 
 		$attr = keypair_to_str( $attributes , '=' , ' ' , '"');
 		
-		print <<<EOF
-			<img class="{$class}" src="{$src}" {$attr} style="width:70px; height:70px;">
-		EOF;
+		// print <<<EOF
+		// 	<img class="{$class}" src="{$src}" {$attr} style="width:70px; height:70px;">
+		// EOF;
 	}

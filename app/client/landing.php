@@ -89,7 +89,7 @@
 			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 		</p>
 
-		<img src="<?php echo URL.DS.'public/monster_thesis_banner.jpg'?>">
+		<img src="<?php echo URL.DS.'public/banner.jpg'?>">
 	</div>
 </section>
 

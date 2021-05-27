@@ -11,7 +11,7 @@
 
 		<div class="card-body">
 			<div class="table-responsive">
-				<table class="table" id="datatable">
+				<table class="table dataTable">
 					<thead>
 						<th>Company</th>
 						<th>Type</th>
@@ -48,12 +48,6 @@
 	</style>
 	<?php dtHead()?>
 <?php endbuild()?>
-
-<?php 
-	build('scripts');
-		dtFoot();
-	endbuild();
-?>
 
 <?php
 	build('breadcrum');
