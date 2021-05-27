@@ -9,7 +9,7 @@
 
 		<div class="card-body">
 			<div class="table-responsive">
-				<table class="table myTable table-bordered">
+				<table class="table myTable table-bordered dataTable">
 					<thead>
 						<th>Name</th>
 						<th>Description</th>

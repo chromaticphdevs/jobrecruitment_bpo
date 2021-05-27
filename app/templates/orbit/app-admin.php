@@ -18,15 +18,8 @@
     <link href="<?php echo _vendor('orbit/css/flag-icon.min.css')?>" rel="stylesheet" type="text/css">
     <link href="<?php echo _vendor('orbit/css/style.css')?>" rel="stylesheet" type="text/css">
     <link href="<?php echo _public('css/global_custom.css')?>" rel="stylesheet" type="text/css">
-
-
-    <!-- DataTables css -->
-    <link href="<?php echo _vendor('orbit/plugins/datatables/dataTables.bootstrap4.min.css')?>" rel="stylesheet" type="text/css" />
-    <link href="<?php echo _vendor('orbit/plugins/datatables/buttons.bootstrap4.min.css')?>" rel="stylesheet" type="text/css" />
-    <!-- Responsive Datatable css -->
-    <link href="<?php echo _vendor('orbit/plugins/datatables/responsive.bootstrap4.min.css')?>" rel="stylesheet" type="text/css" />
     <!-- End css -->
-
+    <?php dtHead()?>
     <?php produce('headers')?>
 </head>
 <body class="vertical-layout">
@@ -270,30 +263,9 @@
     
     <!-- Switchery js -->
     <script src="<?php echo _vendor('orbit/plugins/switchery/switchery.min.js')?>"></script>
-
-
-    <script src="<?php echo _vendor('orbit/plugins/datatables/jquery.dataTables.min.js')?>a"></script>
-    <script src="<?php echo _vendor('orbit/plugins/datatables/dataTables.bootstrap4.min.js')?>"></script>
-    <script src="<?php echo _vendor('orbit/plugins/datatables/dataTables.buttons.min.js')?>"></script>
-    <script src="<?php echo _vendor('orbit/plugins/datatables/buttons.bootstrap4.min.js')?>"></script>
-    <script src="<?php echo _vendor('orbit/plugins/datatables/jszip.min.js')?>"></script>
-    <script src="<?php echo _vendor('orbit/plugins/datatables/pdfmake.min.js')?>"></script>
-    <script src="<?php echo _vendor('orbit/plugins/datatables/vfs_fonts.js')?>"></script>
-    <script src="<?php echo _vendor('orbit/plugins/datatables/buttons.html5.min.js')?>"></script>
-    <script src="<?php echo _vendor('orbit/plugins/datatables/buttons.print.min.js')?>"></script>
-    <script src="<?php echo _vendor('orbit/plugins/datatables/buttons.colVis.min.js')?>"></script>
-    <script src="<?php echo _vendor('orbit/plugins/datatables/dataTables.responsive.min.js')?>"></script>
-    <script src="<?php echo _vendor('orbit/plugins/datatables/responsive.bootstrap4.min.js')?>"></script>
-
         <!-- Core js -->
     <script src="<?php echo _vendor('orbit/js/core.js')?>"></script>
-    <!-- End js -->
-
-    <script type="text/javascript" defer>
-        $(document).ready( function () {
-            $('.myTable').DataTable();
-        } );
-    </script>
+    <?php dtFoot() ?>
     <?php produce('scripts')?>
 </body>
 </html>

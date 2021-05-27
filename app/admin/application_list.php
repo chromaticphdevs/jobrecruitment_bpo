@@ -1,48 +1,45 @@
 <?php require_once '../dependencies.php';?>
+<?php $examList = getExamList(); ?>
 
-<?php require_once APPROOT.DS.'templates/user/header.php';?>
-</head>
-<body>
-<?php require_once APPROOT.DS.'templates/user/navigation.php';?>
-<?php require_once APPROOT.DS.'templates/user/sidebar.php';?>
-	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-		<?php pageHeader('Applicant Management') ;?>
-		<?php  $applicantList = getApplicantList( " WHERE ja.status != 'passed' ORDER BY ja.id desc ") ;?>
-		<div class="panel panel-default">
-			<?php Flash::show();?>
-			<div class="panel-heading">
-				Applicant List
-			</div>
+<?php 
+	if(isset($_GET['filter'])){
+		$status = $_GET['status'];
 
-			<div class="panel-body">
-				<div>
-					<form class="form-inline">
-						<input type="hidden" name="filter" value="searchfilter">
-						<div class="form-group">
-							<label>Status</label>
-							<select class="form-control" name="status">
-								<option value="pending">pending</option>
-								<option value="passed">passed</option>
-								<option value="failed">failed</option>
-							</select>
-						</div>
+		$applicantList = getApplicantList( " WHERE ja.status_label != 'complete' and ja.status = '{$status}' ");
+	}else{
+		$applicantList = getApplicantList( " WHERE ja.status != 'passed' ORDER BY ja.id desc ");
+	}
+?>
+<?php build('content')?>
+	<?php spaceUp()?>
+	<div class="card card-theme-dark">
+		<div class="card-header">
+			<h4 class="card-title">Applicant List</h4>
+		</div>
 
-						<div class="form-group">
-							<input type="submit" value="Apply Search">
-						</div>
-					</form>
-					<?php if(isset($_GET['filter'])) :?>
-						<a href="application_list.php">Remove Filter</a>
-					<?php endif;?>
-				</div>
-				<?php 
-					if(isset($_GET['filter'])){
-						$status = $_GET['status'];
+		<div class="card-body">
+			<div>
+				<form class="form-inline">
+					<input type="hidden" name="filter" value="searchfilter">
+					<div class="form-group">
+						<label>Status</label>
+						<select class="form-control" name="status">
+							<option value="pending">pending</option>
+							<option value="passed">passed</option>
+							<option value="failed">failed</option>
+						</select>
+					</div>
 
-						$applicantList = getApplicantList( " WHERE ja.status_label != 'complete' and ja.status = '{$status}' ");
-					}
-				?>
-				<table class="table <?php echo count($applicantList) > 10 ? 'myTable' : ''?>">
+					<div class="form-group">
+						<input type="submit" value="Apply Search">
+					</div>
+				</form>
+				<?php if(isset($_GET['filter'])) :?>
+					<a href="application_list.php">Remove Filter</a>
+				<?php endif;?>
+		    </div>
+			<div class="table-responsive">
+				<table class="table dataTable">
 					<thead>
 						<th>Company</th>
 						<th>Applicant</th>
@@ -79,10 +76,6 @@
 			</div>
 		</div>
 	</div>
-<?php require_once APPROOT.DS.'templates/user/scripts.php';?>
-<script defer>
-	$(document).ready( function () {
-	    $('.myTable').DataTable();
-	} );
-</script>
-<?php require_once APPROOT.DS.'templates/user/footer.php';?>
+<?php endbuild()?>
+
+<?php loadTo('orbit/app-admin')?>

@@ -6,7 +6,7 @@
             </a> 
         </li>
 
-        <!-- <li>
+        <li>
           <a href="javaScript:void();">
             <img src="<?php echo _vendor('orbit/images/svg-icon/dashboard.svg')?>" class="img-fluid" alt="apps"><span>Company</span><i class="feather icon-chevron-right pull-right"></i>
           </a>
@@ -60,24 +60,17 @@
             </a> 
         </li>
 
-        <li>
+        <!-- <li>
             <a href="employee_list.php">
               <img src="<?php echo _vendor('orbit/images/svg-icon/dashboard.svg')?>" class="img-fluid" alt="dashboard"><span>Employees</span>
             </a> 
-        </li>
+        </li> -->
 
-        <li>
+        <!-- <li>
           <a href="reports.php">
             <img src="<?php echo _vendor('orbit/images/svg-icon/dashboard.svg')?>" class="img-fluid" alt="dashboard"><span>Reports</span>
           </a> 
-        </li>
-
-        <li>
-          <a href="employee_list.php">
-            <img src="<?php echo _vendor('orbit/images/svg-icon/dashboard.svg')?>" class="img-fluid" alt="dashboard"><span>Employee 201</span>
-          </a> 
         </li> -->
-        
         <li><a href="logout.php"><em class="fa fa-user">&nbsp;</em> Logout</a></li>
     </ul>
 </div>

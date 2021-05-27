@@ -1,6 +1,6 @@
 <div class="navigationbar">
     <ul class="vertical-menu">
-        <!-- <li>
+       <!--  <li>
             <a href="javaScript:void();">
               <img src="<?php echo _vendor('orbit/images/svg-icon/dashboard.svg')?>" class="img-fluid" alt="dashboard"><span>Dashboard</span>
             </a> 
@@ -24,7 +24,7 @@
             </a> 
         </li>
 
-       <!--  <li>
+       <li>
             <a href="education_primary_edit.php">
               <img src="<?php echo _vendor('orbit/images/svg-icon/dashboard.svg')?>" class="img-fluid" alt="dashboard"><span>Education</span>
             </a> 
@@ -53,7 +53,6 @@
               <img src="<?php echo _vendor('orbit/images/svg-icon/dashboard.svg')?>" class="img-fluid" alt="dashboard"><span>Catalog</span>
             </a> 
         </li>
- -->
         <li>
             <a href="auth_edit.php">
               <img src="<?php echo _vendor('orbit/images/svg-icon/dashboard.svg')?>" class="img-fluid" alt="dashboard"><span>Logins</span>

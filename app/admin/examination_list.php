@@ -12,7 +12,7 @@
 		<?php Flash::show();?>
 
 		<div class="table-responsive">
-			<table class="table table-bordered myTable">
+			<table class="table table-bordered dataTable">
 				<thead>
 					<th>Name</th>
 					<th>Examname</th>

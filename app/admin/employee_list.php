@@ -1,63 +1,56 @@
 <?php require_once '../dependencies.php';?>
+<?php  $employeeList = getEmployeeList( " order by emp.id desc ") ;?>
+<?php
+	if(isset($_GET['filter'])) {
 
-<?php require_once APPROOT.DS.'templates/user/header.php';?>
-</head>
-<body>
-<?php require_once APPROOT.DS.'templates/user/navigation.php';?>
-<?php require_once APPROOT.DS.'templates/user/sidebar.php';?>
-	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-		<?php pageHeader('Employee Management') ;?>
-		<?php  $employeeList = getEmployeeList( " order by emp.id desc ") ;?>
+		$type = trim(strtolower($_GET['type']));
 
-		<?php
-			if(isset($_GET['filter'])) {
+		switch ($type) {
+			case 'non-regular':
+				$employeeList = getEmployeeList( " WHERE emp_type like '%non-regular%' and status ='active'");
+				break;
+			case 'regular':
+				$employeeList = getEmployeeList( " WHERE emp_type like '%regularr%'");
+				break;
 
-				$type = trim(strtolower($_GET['type']));
+			case 'terminated':
+				$employeeList = getEmployeeList( " WHERE emp.status ='inactive'");
+				break;
+		}
+	}
+?>
+<?php build('content')?>
+	<?php spaceUp()?>
+	<div class="card card-theme-dark">
+		<div class="card-header">
+			<h4 class="card-title">Employee List</h4>
+		</div>
 
-				switch ($type) {
-					case 'non-regular':
-						$employeeList = getEmployeeList( " WHERE emp_type like '%non-regular%' and status ='active'");
-						break;
-					case 'regular':
-						$employeeList = getEmployeeList( " WHERE emp_type like '%regularr%'");
-						break;
+		<div class="card-body">
+			<div class="col-md-3" style="margin-bottom: 20px;">
+				<form method="get" class="form-inline">
+					<input type="hidden" name="filter">
+					<div class="form-group">
+						<label>Filter</label>
+					</div>
 
-					case 'terminated':
-						$employeeList = getEmployeeList( " WHERE emp.status ='inactive'");
-						break;
-				}
-			}
-		?>
-		<div class="panel panel-default">
-			<?php Flash::show();?>
-			<div class="panel-heading">
-				Employee List
+					<div class="form-group">
+						<select class="form-control" name="type">
+							<option value="">-Select</option>
+							<option value="non-regular">Non regular</option>
+							<option value="regular">Regular</option>
+							<option value="terminated">Terminated</option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<input type="submit" name="" class="btn btn-dark">
+					</div>
+				</form>
 			</div>
+			<div class="divider"></div>
 
-			<div class="panel-body">
-				<div class="col-md-3" style="margin-bottom: 20px;">
-					<form method="get" class="form-inline">
-						<input type="hidden" name="filter">
-						<div class="form-group">
-							<label>Filter</label>
-						</div>
-
-						<div class="form-group">
-							<select class="form-control" name="type">
-								<option value="">-Select</option>
-								<option value="non-regular">Non regular</option>
-								<option value="regular">Regular</option>
-								<option value="terminated">Terminated</option>
-							</select>
-						</div>
-
-						<div class="form-group">
-							<input type="submit" name="" class="btn btn-dark">
-						</div>
-					</form>
-				</div>
-				<div class="divider"></div>
-
+			<div class="table-responsive">
 				<table class="table dataTable">
 					<thead>
 						<th>ID</th>
@@ -89,8 +82,8 @@
 						<?php endforeach;?>
 					</tbody>
 				</table>
-			</div>
+			</div> 	
 		</div>
 	</div>
-<?php require_once APPROOT.DS.'templates/user/scripts.php';?>
-<?php require_once APPROOT.DS.'templates/user/footer.php';?>
+<?php endbuild()?>
+<?php loadTo('orbit/app-admin')?>
