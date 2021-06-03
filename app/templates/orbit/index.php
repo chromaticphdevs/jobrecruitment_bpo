@@ -36,9 +36,9 @@
           <li class="nav-item">
             <a class="nav-link" href="login.php">Login</a>
           </li>
-         <!--  <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link" href="catalog.php">Catalog <span class="sr-only">(current)</span></a>
-          </li> -->
+          </li>
         </ul>
         <?php else:?>
         <ul class="navbar-nav my-2 ml-auto">
