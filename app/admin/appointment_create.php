@@ -1,7 +1,4 @@
 <?php require_once '../dependencies.php';?>
-
-<?php require_once APPROOT.DS.'templates/user/header.php';?>
-
 <?php
 	
 	if(postRequest('sendAppointment'))
@@ -17,79 +14,77 @@
 
 	$applicationid = $_GET['applicationid'];
 ?>
-</head>
-<body>
-	<?php require_once APPROOT.DS.'templates/user/navigation.php';?>
-	<?php require_once APPROOT.DS.'templates/user/sidebar.php';?>
-	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-		<div class="card">
-			<div class="card-header">
-				<h4>Set an appointment</h4>
-			</div>
 
-			<div class="card-body">
-				<?php
-					FormOpen([
-						'method' => 'post',
-					]);
+<?php build('content')?>
+	<?php spaceUp()?>
+	<div class="card card-theme-dark">
+		<div class="card-header">
+			<h4 class="card-title">Set an appointment</h4>
+		</div>
 
-					FormHidden('applicationid' , $applicationid);
-				?>
+		<div class="card-body">
+			<?php
+				FormOpen([
+					'method' => 'post',
+				]);
 
-				<div class="form-group row">
-					<div class="col-md-6">
-						<?php
-							FormLabel('date');
-							FormDate('date' , '' , [
-								'class' => 'form-control',
-								'required' => ''
-							])
-						?>
-					</div>
+				FormHidden('applicationid' , $applicationid);
+			?>
 
-					<div class="col-md-6">
-						<?php
-							FormLabel('Time');
-							FormTime('time' , '' , [
-								'class' => 'form-control',
-								'required' => ''
-							])
-						?>
-					</div>
-				</div>
-
-				<div class="form-group">
+			<div class="form-group row">
+				<div class="col-md-6">
 					<?php
-						FormLabel('Address');
-						FormText('address' , '' , [
+						FormLabel('date');
+						FormDate('date' , '' , [
 							'class' => 'form-control',
 							'required' => ''
 						])
 					?>
 				</div>
 
-
-				<div class="form-group">
+				<div class="col-md-6">
 					<?php
-						FormLabel('Notes');
-						FormTextarea('notes' , '' , [
+						FormLabel('Time');
+						FormTime('time' , '' , [
 							'class' => 'form-control',
-							'rows' => 5
+							'required' => ''
 						])
 					?>
 				</div>
-
-				<?php
-					FormSubmit('sendAppointment' , ' Send Apointment' , [
-						'class' => 'btn btn-primary'
-					]);
-				?>
-
-				<a href="application_view.php?id=<?php echo $applicationid?>">Cancel</a>
-
-				<?php FormClose()?>
 			</div>
+
+			<div class="form-group">
+				<?php
+					FormLabel('Address');
+					FormText('address' , '' , [
+						'class' => 'form-control',
+						'required' => ''
+					])
+				?>
+			</div>
+
+
+			<div class="form-group">
+				<?php
+					FormLabel('Notes');
+					FormTextarea('notes' , '' , [
+						'class' => 'form-control',
+						'rows' => 5
+					])
+				?>
+			</div>
+
+			<?php
+				FormSubmit('sendAppointment' , ' Send Apointment' , [
+					'class' => 'btn btn-primary'
+				]);
+			?>
+
+			<a href="application_view.php?id=<?php echo $applicationid?>">Cancel</a>
+
+			<?php FormClose()?>
 		</div>
 	</div>
-<?php require_once APPROOT.DS.'templates/user/scripts.php';?>
-<?php require_once APPROOT.DS.'templates/user/footer.php';?>
+<?php endbuild()?>
+
+<?php loadTo('orbit/app-admin')?>
