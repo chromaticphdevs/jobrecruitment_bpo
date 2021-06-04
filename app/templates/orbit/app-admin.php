@@ -76,8 +76,8 @@
             <div class="sidebar">
                 <!-- Start Logobar -->
                 <div class="logobar">
-                    <a href="catalog.php" class="logo logo-large"><img src="<?php echo _public('logo_regular.jpg')?>" class="img-fluid" alt="logo"></a>
-                    <a href="catalog.php" class="logo logo-small"><img src="<?php echo _public('logo_regular.jpg')?>" class="img-fluid" alt="logo"></a>
+                    <a href="catalog.php" class="logo logo-large"><img src="<?php echo _public('logo_regular.png')?>" class="img-fluid" alt="logo"></a>
+                    <a href="catalog.php" class="logo logo-small"><img src="<?php echo _public('logo_regular.png')?>" class="img-fluid" alt="logo"></a>
                 </div>
                 <!-- End Logobar -->
                 <!-- Start Navigationbar -->
@@ -95,7 +95,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="mobile-logobar">
-                            <a href="index.html" class="mobile-logo"><img src="<?php echo _public('logo_regular.jpg')?>" class="img-fluid" alt="logo"></a>
+                            <a href="index.html" class="mobile-logo"><img src="<?php echo _public('logo_regular.png')?>" class="img-fluid" alt="logo"></a>
                         </div>
                         <div class="mobile-togglebar">
                             <ul class="list-inline mb-0">
