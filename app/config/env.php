@@ -1,6 +1,6 @@
 <?php
 
-	$env = 'live';
+	$env = 'local';
 
 	switch($env)
 	{

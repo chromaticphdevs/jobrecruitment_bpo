@@ -263,7 +263,7 @@
 
     function _vendor($path)
     {
-        return URL.DS.'public/vendor'.DS.$path;
+        return URL.DS.'public/vendor/orbit/'.$path;
     }
 
      function _public($path)

@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <title><?php echo APP_NAME?></title>
     <!-- Fevicon -->
-    <link rel="shortcut icon" href="<?php echo _vendor('orbit/images/favicon.ico')?>">
+    <link rel="shortcut icon" href="<?php echo _vendor('images/favicon.ico')?>">
     <!-- Start css -->
     <!-- Switchery css -->
-    <link href="<?php echo _vendor('orbit/plugins/switchery/switchery.min.css')?>" rel="stylesheet">
-    <link href="<?php echo _vendor('orbit/css/bootstrap.min.css')?>" rel="stylesheet" type="text/css">
-    <link href="<?php echo _vendor('orbit/css/icons.css')?>" rel="stylesheet" type="text/css">
-    <link href="<?php echo _vendor('orbit/css/flag-icon.min.css')?>" rel="stylesheet" type="text/css">
-    <link href="<?php echo _vendor('orbit/css/style.css')?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo _vendor('plugins/switchery/switchery.min.css')?>" rel="stylesheet">
+    <link href="<?php echo _vendor('css/bootstrap.min.css')?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo _vendor('css/icons.css')?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo _vendor('css/flag-icon.min.css')?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo _vendor('css/style.css')?>" rel="stylesheet" type="text/css">
     <link href="<?php echo _public('css/global_custom.css')?>" rel="stylesheet" type="text/css">
 
     <?php produce('headers')?>
@@ -82,20 +82,20 @@
   logged_out_greeting="You like it? send us a message and we will set up the application for you!">
       </div>
       
-    <script src="<?php echo _vendor('orbit/js/jquery.min.js')?>"></script>
-    <script src="<?php echo _vendor('orbit/js/popper.min.js')?>"></script>
-    <script src="<?php echo _vendor('orbit/js/bootstrap.min.js')?>/"></script>
+    <script src="<?php echo _vendor('js/jquery.min.js')?>"></script>
+    <script src="<?php echo _vendor('js/popper.min.js')?>"></script>
+    <script src="<?php echo _vendor('js/bootstrap.min.js')?>/"></script>
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="<?php echo _vendor('orbit/js/modernizr.min.js')?>"></script>
-    <script src="<?php echo _vendor('orbit/js/detect.js')?>"></script>
-    <script src="<?php echo _vendor('orbit/js/jquery.slimscroll.js')?>"></script>
-    <script src="<?php echo _vendor('orbit/js/vertical-menu.js')?>"></script>
+    <script src="<?php echo _vendor('js/modernizr.min.js')?>"></script>
+    <script src="<?php echo _vendor('js/detect.js')?>"></script>
+    <script src="<?php echo _vendor('js/jquery.slimscroll.js')?>"></script>
+    <script src="<?php echo _vendor('js/vertical-menu.js')?>"></script>
     <!-- Switchery js -->
-    <script src="<?php echo _vendor('orbit/plugins/switchery/switchery.min.js')?>"></script>
+    <script src="<?php echo _vendor('plugins/switchery/switchery.min.js')?>"></script>
     <!-- Core js -->
-    <script src="<?php echo _vendor('orbit/js/core.js')?>"></script>
+    <script src="<?php echo _vendor('js/core.js')?>"></script>
     <!-- End js -->
 </body>
 </html>

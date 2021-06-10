@@ -6,6 +6,8 @@
 	{
 		$userid = Session::get('user')['id'];
 
+		
+
 		$result = uploadProfile($userid);
 	}
 ?>
@@ -13,7 +15,7 @@
 
 
 <?php
-	
+
 	// if(!isDoneSetup()) {
 	// 	Flash::set("finish setting up your account first" , 'warning');
 

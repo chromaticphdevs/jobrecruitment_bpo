@@ -430,8 +430,8 @@
 
 		if($query = $db->query($sql))
 		{
-			Flash::set('Category Created');
-			redirect('category_list.php');
+			Flash::set('Category Created' , 'success' , 'category');
+			return redirect('category_list.php');
 			// redirect('category_view.php?id='.insertId($db));
 		}else
 		{
@@ -608,8 +608,18 @@
 				$status = 'endorsed';
 			}
 
-			return updateApplicationLabelStatus($applicationid , $status);
+			$application = getApplication($applicationid);
+
+			$link = "application_view.php?id={$applicationid}";
+
+			createNotification("APPLICANT" , [
+				'notification' => 'You job application status has been changed to '.$status,
+				'link'  => $link
+			] ,$application['userid']);
+
 			Flash::set('Application status updated');
+
+			return updateApplicationLabelStatus($applicationid , $status);
 		}
 
 		return false;
@@ -620,6 +630,15 @@
 		$result = db_update('job_applications' , [
 			'status' => $status
 		] , " id = '$applicationid' ");
+
+		$application = getApplication($applicationid);
+
+		$link = "application_view.php?id={$applicationid}";
+
+		createNotification("APPLICANT" , [
+			'notification' => 'You job application status has been changed to '.$status,
+			'link'  => $link
+		] ,$application['userid']);
 
 		return $result;
 	}
@@ -992,6 +1011,8 @@
 
 		$examination = getExamination($examinationid);
 
+		$userId = Session::get('user')['id'];
+
 		if(insertAnswer($examinationid, $questionid, $answer))
 		{
 			$question = getExamQA($questionid);
@@ -1012,13 +1033,25 @@
 
 					$resultArray = [
 						'examinationid' => $examinationid ,
-						'correct'  =>  count($result->getCorrects()),
+						'correct'   => count($result->getCorrects()),
 						'incorrect' => count($result->getInCorrects()),
 						'score'     => $remarkAndScore['score'],
 						'remarks'   => $remarkAndScore['remarks']
 					];
 
 					$resultid = insertExamResult($resultArray);
+
+					$href = "examination_result.php?resultid={$resultid}";
+
+					createNotification('APPLICANT' , [
+						'notification' => 'An applicant has just finished taking exam.',
+						'link'      =>  $href
+					] , 0);
+
+					createNotification('APPLICANT' , [
+						'notification' => 'You have just finished taking exam.',
+						'link'      =>  $href
+					] , $userId);
 
 					redirect("examination_result.php?resultid={$resultid}");
 				}
@@ -1108,23 +1141,38 @@
 	/*require customers actions*/
 // 	require_once 'customer/actions.php';
 
-	function sendAppointment($applicantEmail , $applicantId , $senderId , $message , $applicantName = null)
+	function sendAppointment($applicantEmail , $applicantId , $senderId , $message , $applicantName = null , $appointmentId = null)
 	{
 		/*SUBJECT MESSAGE , RECIEVER */
-		mailAppointmentSchedule($message , $applicantEmail , $applicantName);
 
-		return createNotification(SCHEDULE_APPOINTMENT , $message , $applicantId , $senderId);
+		$href = 'appointment_view.php?id='.$appointmentId;
+		// $link = 
+
+		createNotification('APPLICANT', [
+			'notification' => "You have an appointment",
+			'link' => $href,
+			'meta_id' => $applicantId,
+		] , $applicantId);
+
+		createNotification('APPLICANT', [
+			'notification' => "You have an appointment",
+			'link' => $href,
+			'meta_id' => 0,
+		] , $applicantId);
+
+		return mailAppointmentSchedule($message , $applicantEmail , $applicantName);
+		// return createNotification(SCHEDULE_APPOINTMENT , $message , $applicantId , $senderId);
 	}
 
-	function createNotification($subject , $message , $reciever , $sender)
+	function createNotification($META_KEY , $PARAMETERS = [] , $recieverId)
 	{
 		$db = DB::getInstance();
 
 		return db_insert('notifications',[
-			'subject'  => $subject,
-			'message'  => $message,
-			'reciever' => $reciever,
-			'sender'   => $sender
+			'meta_key'  => $META_KEY,
+			'meta_id'  => $recieverId,
+			'notification' => $PARAMETERS['notification'],
+			'link'   => $PARAMETERS['link']
 		]);
 	}
 
@@ -1325,6 +1373,10 @@
 
 			updateApplicationStatus($applicationid , 'finished');
 			updateApplicationLabelStatus($applicationid , 'complete');
+
+			createNotification("APPLICANT" , [
+				'notification' => "You are now an employee!"
+			] ,$userid);
 
 			return $employeeID;
 		}else

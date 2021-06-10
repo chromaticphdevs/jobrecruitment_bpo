@@ -33,6 +33,7 @@
 
 <?php
 	$appointment = getAppointment($_GET['id']);
+
 	$applicationid = $appointment['applicationid'];
 
 	$jobApplication = new JobApplication($applicationid);

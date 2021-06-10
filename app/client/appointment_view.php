@@ -15,6 +15,9 @@
 	}
 
 	$appointment = getAppointment($_GET['id']);
+	if( !$appointment )
+		return redirect('profile.php');
+	
 	$applicationid = $appointment['applicationid'];
 
 	$jobApplication = new JobApplication($applicationid);
@@ -69,8 +72,6 @@
 
 		<section class="alert alert-primary">
 			<h3>Applicant Info</h3>
-			<a href="application_view.php?id=<?php echo $applicationid?>" class="btn btn-warning btn-sm">Preview</a>
-			<hr>
 			<div class="row">
 				<div class="col-md-4">
 					<h4>Personal</h4>
@@ -222,89 +223,9 @@
 				</div>
 			</div>
 		</section>
-
-		
-			<section class="alert alert-primary">
-				<h3>Actions</h3>
-				<div class="row">
-					<?php if(isEqual('pending' , $jaInfo['status'])) :?>
-					<div class="col-md-4">
-						<h4>Set Application to Finish</h4>
-						<form method="post">
-							<input type="hidden" name="remarks" value="<?php echo $jaInfo['status']?>">
-							<input type="hidden" name="appointmentid" value="<?php echo $_GET['id']?>">
-							<div class="form-group">
-								<input type="submit" name="setToFinish" class="btn btn-primary" 
-								value="set to finish">
-							</div>
-						</form>
-					</div>
-					<?php endif?>
-					<div class="col-md-4">
-						<h4>Reschedule appointment</h4>
-						<a href="appointment_edit.php?id=<?php echo $appointment['id']?>" class="btn btn-primary">
-							Set new schedule
-						</a>
-					</div>
-				</div>
-			</section>
-		<div>
-			<h3>Add your new Employee</h3>
-			<a href="employee_create.php?applicationid=<?php echo $applicationid?>&">Set Applicant as employed</a>
-		</div>
-		<?php if($appointment['status'] != 'finished') :?>
-		<section>
-
-			<?php if(isset($_GET['contentshow']) && $_GET['contentshow'] == 'scheduleForm') :?>
-				<hr>
-				<div class="col-md-5" id="scheduleForm">
-					<form method="post">
-						<input type="hidden" name="appointmentid" value="<?php echo $appointment['id']?>">
-						<fieldset>
-							<legend>Update Appoint</legend>
-							<div class="form-group">
-								<label>Date</label>
-								<input type="date" name="date" class="form-control" 
-								value="<?php echo $appointment['dateset']?>">
-							</div>
-							<div class="form-group">
-								<label>Time</label>
-								<input type="time" name="time" class="form-control" 
-								value="<?php echo $appointment['timeset']?>">
-							</div>
-
-							<div class="form-group">
-								<label>Subject</label>
-								<input type="text" name="subject" class="form-control" 
-								value="Your Applicant for <?php echo $comp_name?> will be re-scheduled">
-							</div>
-							<div class="form-group">
-								<label>Message</label>
-								<textarea class="form-control" cols="5" name="message">Dear <?php echo $fullname?> , we would like to advice you that your sheduled appointment to us '<?php echo $comp_name?>',is will be reschedule to some reason..
-								</textarea>
-							</div>
-							<div class="form-group">
-								<label>Will be sent to</label>
-								<input type="text" name="reciever" 
-								value="<?php echo $applicant->getPersonal()['email']?>" class="form-control"
-								readonly>
-							</div>
-
-							<input type="submit" name="updateAppointment" class="btn btn-primary" 
-							value="Send Appointment">
-						</fieldset>
-					</form>
-				</div>
-			<?php endif;?>
-			<div class="divider"></div>
-			
-		</section>
-		<?php else:?>
-			<p>Application is finished, remarks : <strong><?php echo $appointment['remarks']?></strong></p>
-	<?php endif;?>
 	</div>
 </div>
 
 <?php endbuild()?>
 
-<?php loadTo('orbit/app-admin')?>
+<?php loadTo('orbit/app')?>

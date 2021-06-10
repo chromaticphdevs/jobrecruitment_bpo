@@ -29,6 +29,19 @@
 		}
 	}
 	#########################
+
+
+	function getNotifications($id = 0)
+	{
+		$db = DB::getInstance();
+
+		$sql = "SELECT * FROM notifications where meta_id = '{$id}' ";
+
+		$query = $db->query($sql);
+
+		return fetchAll($query);
+	}
+
 	function getJob($jobid)
 	{
 		$db = DB::getInstance();
@@ -663,23 +676,6 @@
 
 		return fetchSingle($db->query($sql));
 	}
-
-
-	function getNotifications($params = null)
-	{
-		$db = DB::getInstance();
-
-		$sql = "SELECT * , (SELECT firstname as firstname from user_informations where id = notif.reciever ) as reciever ,
-		(SELECT firstname as firstname from user_informations where id = notif.sender ) as sender
-		from notifications as notif $params";
-
-		$query = $db->query($sql);
-
-		// die(var_dump(mysqli_error($db)));
-
-		return fetchAll($query);
-	}
-
 	function readMessage($notifid)
 	{
 		$db = DB::getInstance();

@@ -91,6 +91,9 @@
                     <li>Status : <?php echo $jaInfo['status']?></li>
                     <li>Resume Image : <a href="file_viewer.php?filename=<?php echo $jaInfo['resume_image']?>" target="_blanks">Preview</a></li>
                     <li>Resume Document : <a href="file_viewer.php?filename=<?php echo $jaInfo['resume_text']?>" target="_blanks">Preview</a></li>
+                    <li>
+                    	<a href="applicant_view.php?id=<?php echo $applicant['personal']['id']?>">Review Account</a>
+                    </li>
                 </ul>
             </div>
             <div class="col-md-6">

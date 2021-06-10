@@ -10,6 +10,7 @@
 		</div>
 
 		<div class="card-body">
+			<?php Flash::show('category')?>
 			<div class="table-responsive">
 				<table class="table dataTable" >
 					<thead>
